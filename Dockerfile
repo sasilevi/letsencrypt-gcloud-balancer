@@ -6,10 +6,11 @@ RUN apt-get update \
     && apt-get install -y wget python xz-utils cron git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-176.0.0-linux-x86_64.tar.gz \
-    && tar -zxf google-cloud-sdk-176.0.0-linux-x86_64.tar.gz \
+RUN wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-385.0.0-linux-x86_64.tar.gz \
+    && tar -xf google-cloud-cli-385.0.0-linux-x86_64.tar.gz \
     && ./google-cloud-sdk/install.sh --usage-reporting false \
-    && rm google-cloud-sdk-176.0.0-linux-x86_64.tar.gz
+    && rm google-cloud-cli-385.0.0-linux-x86_64.tar.gz \
+    && ln -s /root/google-cloud-sdk/bin/gcloud /usr/bin/gcloud 
 
 COPY lego_v4.6.0_linux_amd64.tar.gz lego.tar.gz
 RUN tar -xzf lego.tar.gz lego \
