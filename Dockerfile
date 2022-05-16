@@ -15,9 +15,10 @@ RUN wget https://github.com/go-acme/lego/releases/download/v3.0.2/lego_v3.0.2_li
     && tar -xzf lego_v3.0.2_linux_amd64.tar.gz lego \
     && rm lego_v3.0.2_linux_amd64.tar.gz
 
+COPY start.sh /root/start.sh
 COPY init.sh /root/init.sh
 COPY monthly.sh /root/monthly.sh
 
 COPY crontab /etc/cron.d/letsencrypt
 
-CMD /root/init.sh && cron -f
+CMD /root/start.sh
