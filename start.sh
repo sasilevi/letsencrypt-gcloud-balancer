@@ -37,13 +37,13 @@ echo "You have selected $OPERATION operation"
 if [ "$OPERATION" = "create" ]
 then
     echo "run create certificate."
-    ./lego $USE_STAGING_SERVER --dns-timeout 30 -k rsa2048 -m $LETSENCRYPT_EMAIL -dns gcloud $DOMAINS_LIST -a run
+    lego $USE_STAGING_SERVER --dns-timeout 30 -k rsa2048 -m $LETSENCRYPT_EMAIL -dns gcloud $DOMAINS_LIST -a run
 elif [ "$OPERATION" = "renew" ]
 then
     echo "run update certificate."
     #TODO: get old certificate from bucket decide on folder naming convension
     gsutil cp $BACKUP_PATH/* .
-    ./lego $USE_STAGING_SERVER --dns-timeout 30 -k rsa2048 -m $LETSENCRYPT_EMAIL -dns gcloud $DOMAINS_LIST -a renew
+    lego $USE_STAGING_SERVER --dns-timeout 30 -k rsa2048 -m $LETSENCRYPT_EMAIL -dns gcloud $DOMAINS_LIST -a renew
 else
     echo "not supported operation $OPERATION, plase use create/renew"
     exit 1

@@ -1,7 +1,14 @@
-all: build
+REPO=guiddeco
+IMAGE=letsencrypt-gcloud-balancer
+TAG=latest
 
+.PHONY: release
+release: build push
+
+.PHONY: build
 build:
-	docker build . -t bloomapi/letsencrypt-gcloud-balancer:latest
+	docker build . -t ${REPO}/${IMAGE}:${TAG}
 
-push: build
-	docker push bloomapi/letsencrypt-gcloud-balancer:latest
+.PHONY: build
+push:
+	docker push ${REPO}/${IMAGE}:${TAG}

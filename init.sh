@@ -7,7 +7,7 @@ USE_STAGING_SERVER="${USE_STAGING_SERVER+--server=https://acme-staging-v02.api.l
 
 # On Startup
 # Lets Encrypt Initialize
-./lego $USE_STAGING_SERVER --dns-timeout 30 -k rsa2048 -m $LETSENCRYPT_EMAIL -dns gcloud $DOMAINS_LIST -a run
+lego $USE_STAGING_SERVER --dns-timeout 30 -k rsa2048 -m $LETSENCRYPT_EMAIL -dns gcloud $DOMAINS_LIST -a run
 
 # Create certificate chain
 CERT=$(ls -1 /root/.lego/certificates | grep crt\$ | grep -m1 -v issuer)
